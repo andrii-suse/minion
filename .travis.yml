@@ -15,11 +15,11 @@ services:
     - postgresql
 env:
   global:
-    - HARNESS_OPTIONS=j9
+    - HARNESS_OPTIONS=j1
     - TEST_POD=1
     - TEST_ONLINE=postgresql://postgres@/minion_test
 install:
-  - cpanm -n Mojo::Pg Test::Pod Test::Pod::Coverage
+  - cpanm -n Mojo::Pg Test::Pod Test::Pod::Coverage Mojo::IOLoop::ReadWriteProcess
   - cpanm -n --installdeps .
 before_script:
   - psql -U postgres -c 'create database minion_test'
